@@ -490,6 +490,7 @@ static unsigned char src[] = {
 
 
 #include <stdio.h>
+#include <time.h>
 
 int main(void)
 {
@@ -499,11 +500,17 @@ int main(void)
     unsigned char heap[4096];
     unsigned char encryped[256];
     unsigned char decryped[256];
+    clock_t a;
+
 
     //私钥加密
+    a = clock();
     rsa_process(heap,4096,N,RR,D,src,encryped,256);
+    printf("enc time %lf sec\n",(double)(clock()-a)/CLOCKS_PER_SEC);
     //公钥解密
+    a = clock();
     rsa_process(heap,4096,N,RR,E,encryped,decryped,256);
+    printf("dec time %lf sec\n",(double)(clock()-a)/CLOCKS_PER_SEC);
 
     for (i = 0; i < 256; i++)
     {
@@ -514,8 +521,8 @@ int main(void)
         }
     }
     printf("private encrypt test result %d\n",ok);
-    
     ok=0;
+
     //公钥加密
     rsa_process(heap,4096,N,RR,E,src,encryped,256);
     //私钥解密
