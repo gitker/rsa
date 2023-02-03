@@ -306,7 +306,7 @@ static ulong mbedtls_mpi_bitlen(const mbedtls_mpi *X)
 
 /*
  *  X = A^E mod N
- *  slow inplementation,just for simple use
+ *  
  */
 static int mbedtls_mpi_exp_mod(mbedtls_mpi *X, const mbedtls_mpi *A,
                                const mbedtls_mpi *E, const mbedtls_mpi *N,
