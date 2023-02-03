@@ -514,7 +514,8 @@ int main(void)
         }
     }
     printf("private encrypt test result %d\n",ok);
-
+    
+    ok=0;
     //公钥加密
     rsa_process(heap,4096,N,RR,E,src,encryped,256);
     //私钥解密
