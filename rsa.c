@@ -322,12 +322,6 @@ static int mbedtls_mpi_exp_mod(mbedtls_mpi *X, const mbedtls_mpi *A,
     // Y = A*R mod N
     mpi_montmul(Y, RR, N, mm, T);
 
-    if (mbedtls_mpi_get_bit(E, 0))
-    {
-        mcpy(X->p, Y->p, Y->n * ciL);
-        z++;
-    }
-
     for (i = 1; i < mbedtls_mpi_bitlen(E); i++)
     {
         // Y = Y * Y * R^-1 mod N
@@ -346,7 +340,17 @@ static int mbedtls_mpi_exp_mod(mbedtls_mpi *X, const mbedtls_mpi *A,
         }
     }
 
-    mpi_montred(X, N, mm, T);
+    if (mbedtls_mpi_get_bit(E, 0))
+    {
+        if(z==0)
+        {
+            mcpy(X->p, Y->p, Y->n * ciL);
+        }else
+        {
+            mpi_montmul(X, A, N, mm, T);
+        }
+        z++;
+    }
 
     return 0;
 }
