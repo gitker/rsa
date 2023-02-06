@@ -317,6 +317,18 @@ static int mbedtls_mpi_exp_mod(mbedtls_mpi *X, const mbedtls_mpi *A,
     int z = 0;
 
     mpi_montg_init(&mm, N);
+    
+    // check if  RR = R^2 mod N
+    mcpy(X->p, RR->p, RR->n * ciL);
+    mpi_montred(X, N, mm, T);
+    mpi_montred(X, N, mm, T);
+    for (i = 0; i < X->n; i++)
+    {
+        if (X->p[i] != (i == 0))
+        {
+            return MBEDTLS_ERR_MPI_BAD_INPUT_DATA;
+        }
+    }
 
     mcpy(Y->p, A->p, A->n * ciL);
     // Y = A*R mod N
