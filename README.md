@@ -22,7 +22,7 @@
 
 可以找一个a<R，使得 T+aN = kR  
 
-T<N*R  a<R  -> k<2N
+T<N*R 和 a<R  可以推出 k<2N
 
 如果k<N k%N = k 否则 k%N = k-N
   
