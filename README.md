@@ -13,19 +13,19 @@
 2.计算 N'  = -1/N % R
 
 已知T<NR, 计算T/R mod N
-可以找一个a<R，使得 T+aN = kR
-(T+aN)/R < (NR+aN)/R=a+N<2N  k<2N  如果k>N k % N = k-N  否则 k % N= k
-下面求解a：
-T+aN = 0 (mod R)   ->   aN = -T (mod R) ->  a = -T/N (mod R) -> a = N'T%R
-这样就把(T/R)%N 的计算转化为了计算R的模余运算，虽然求T%N比较困难，
-但是我们找到了一个求T*R^-1 %N的快速方式
+可以找一个a<R，使得 T+aN = kR  
+(T+aN)/R < (NR+aN)/R=a+N<2N  k<2N  如果k>N k % N = k-N  否则 k % N= k 
+下面求解a： 
+T+aN = 0 (mod R)   ->   aN = -T (mod R) ->  a = -T/N (mod R) -> a = N'T%R 
+这样就把(T/R)%N 的计算转化为了计算R的模余运算，虽然求T%N比较困难， 
+但是我们找到了一个求T*R^-1 %N的快速方式 
 
-A*RR*R^-1 %N          = AR % N
-AR*AR *R^-1 % N       = A^2 *R % N
-A^2*R * A^2*R * R^-1  = A^4 *R %N
-...
-...
-这样可以计算A^(2^n)*R %N ，求A^E %N只是把这些结果做下组合
+A*RR*R^-1 %N          = AR % N 
+AR*AR *R^-1 % N       = A^2 *R % N 
+A^2*R * A^2*R * R^-1  = A^4 *R %N 
+... 
+... 
+这样可以计算A^(2^n)*R %N ，求A^E %N只是把这些结果做下组合 
 
 
 
