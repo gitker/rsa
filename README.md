@@ -9,23 +9,32 @@
 首先寻找一个R=2^k 使得 N<R,由于R是2的多次幂的形式，求解R的模余只需要位移运算，速度比较快。算法的关键就是把求N的模余转化为求R的模余运算
 
 提前计算两个参数
+
 1.计算 RR  = R*R % N
+
 2.计算 N'  = -1/N % R
 
-已知T<NR, 计算T/R mod N
-可以找一个a<R，使得 T+aN = kR  
-(T+aN)/R < (NR+aN)/R=a+N<2N  k<2N  如果k>N k % N = k-N  否则 k % N= k 
-下面求解a： 
-T+aN = 0 (mod R)   ->   aN = -T (mod R) ->  a = -T/N (mod R) -> a = N'T%R 
-这样就把(T/R)%N 的计算转化为了计算R的模余运算，虽然求T%N比较困难， 
-但是我们找到了一个求T*R^-1 %N的快速方式 
+已知T<N*R, 计算T/R mod N
 
-A*RR*R^-1 %N          = AR % N 
-AR*AR *R^-1 % N       = A^2 *R % N 
-A^2*R * A^2*R * R^-1  = A^4 *R %N 
-... 
-... 
-这样可以计算A^(2^n)*R %N ，求A^E %N只是把这些结果做下组合 
+可以找一个a<R，使得 T+aN = kR  
+
+T<N*R  a<R  -> k<2N
+
+如果k<N k%N = k 否则 k%N = k-N
+  
+下面求解a： 
+T+aN = 0 (mod R)   
+
+aN = -T (mod R)  
+
+a = -T/N (mod R) 
+
+a = N'*T mod R
+
+这样就把(T/R)%N 的计算转化为了计算R的模余运算，虽然求T%N比较困难， 
+但是我们找到了一个求T*R^-1 %N的快速方式 ,
+之后可以通A/R mod N 和 RR 组合计算出A^E mod N
+
 
 
 
