@@ -18,7 +18,7 @@
 
 计算 N'  = -1/N % R
 
-已知T<N*R, 计算T/R mod N
+已知T<N*R, 计算T/R % N
 
 可以找一个a<R，使得 T+aN = kR  
 
@@ -36,7 +36,7 @@ a = -T/N (mod R)
 a = N'*T mod R
 
 这样就把(T/R)%N 的计算转化为了计算R的模余运算，虽然求T%N比较困难， 
-但是我们找到了一个求T*R^-1 %N的快速方式 ，记作Mong(T,N) = T*R^-1 %N
+但是我们找到了一个求(T/R) %N的快速方式 ，记作Mong(T,N) = (T/R) %N
 
 下面我们求一个递推方法，已知 A mod N  和 B mod N ，求A*B mod N
 
