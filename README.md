@@ -14,9 +14,9 @@
 
 提前计算两个参数
 
-1.计算 RR  = R*R % N
+计算 RR  = R*R % N
 
-2.计算 N'  = -1/N % R
+计算 N'  = -1/N % R
 
 已知T<N*R, 计算T/R mod N
 
@@ -36,8 +36,25 @@ a = -T/N (mod R)
 a = N'*T mod R
 
 这样就把(T/R)%N 的计算转化为了计算R的模余运算，虽然求T%N比较困难， 
-但是我们找到了一个求T*R^-1 %N的快速方式 ,
-之后可以通A/R mod N 和 RR 组合计算出A^E mod N
+但是我们找到了一个求T*R^-1 %N的快速方式 ，记作Mong(T,N) = T*R^-1 %N
+
+下面我们求一个递推方法，已知 A mod N  和 B mod N ，求A*B mod N
+
+1  A*R mod N =  Mong(A*RR,N)
+
+2  B*R mod N =  Mong(B*RR,N)
+
+3  A*B*R mod N = Mong(A*R * B*R,N)
+
+4  A*B mod N = Mong(A*B*R,N)
+
+有了这个递推方法，求A^E mod N 就比较容易了
+
+
+
+
+
+
 
 
 
