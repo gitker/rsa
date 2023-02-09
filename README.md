@@ -42,11 +42,7 @@ a = N'*T mod R
 
 1  A*R mod N =  Mong(A*RR,N)
 
-2  B*R mod N =  Mong(B*RR,N)
-
-3  A*B*R mod N = Mong(A*R * B*R,N)
-
-4  A*B mod N = Mong(A*B*R,N)
+2  A*B mod N = Mong(A*R*B,N)
 
 有了这个递推方法，求A^E mod N 就比较容易了
 
